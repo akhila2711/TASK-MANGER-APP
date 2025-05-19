@@ -1,11 +1,15 @@
-import { Provider } from 'react-redux';
-import { store } from './store';
-import TaskBoard from './components/TaskBoard/taskBoard';
+import React from "react";
+import Sidebar from "./components/Sidebar";
+import TaskBoard from "./components/TaskBoard";
+import { Provider } from "react-redux";
+import { store } from "./app/store";
 
 const App = () => (
   <Provider store={store}>
-  <App />
-  <TaskBoard />
+    <div className="flex h-screen">
+      <Sidebar />
+      <TaskBoard />
+    </div>
   </Provider>
 );
 

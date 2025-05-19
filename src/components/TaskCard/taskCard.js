@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { updateTaskStatus } from "../../slices/taskSlice";
+import { updateTaskStatus } from "../features/tasks/tasksSlice";
 
 const TaskCard = ({ task, index }) => {
   const dispatch = useDispatch();

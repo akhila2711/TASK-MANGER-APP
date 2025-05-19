@@ -1,21 +1,33 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
-    tasks: [],
-   
-};
-const taskSlice = createSlice({
-    name: 'task',
-    initialState,
-    reducers: {
-        addTask: (state, action) => {
-            state.tasks.push(action.payload);
-        },
-        deleteTask: (state, action) => {
-            state.tasks = state.tasks.filter((task) => task.id !== action.payload);
-        }
-    }
+const tasksSlice = createSlice({
+  name: "tasks",
+  initialState: {
+    boards: {
+      Design: [],
+      Learning: [],
+    },
+    activeBoard: "Design",
+  },
+  reducers: {
+    addBoard: (state, action) => {
+      state.boards[action.payload] = [];
+    },
+    setBoard: (state, action) => {
+      state.activeBoard = action.payload;
+    },
+    addTask: (state, action) => {
+      state.boards[state.activeBoard].push({
+        title: action.payload,
+        status: "Backlog",
+      });
+    },
+    updateTaskStatus: (state, action) => {
+      const { index, status } = action.payload;
+      state.boards[state.activeBoard][index].status = status;
+    },
+  },
 });
 
-export const { addTask, deleteTask } = taskSlice.actions;
-export default taskSlice.reducer;
+export const { addBoard, setBoard, addTask, updateTaskStatus } = tasksSlice.actions;
+export default tasksSlice.reducer;
