@@ -1,0 +1,34 @@
+.task-board {
+  flex: 1;
+  padding: 1rem;
+  background-color: #111827;
+  color: white;
+}
+
+.task-board h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.status-column {
+  flex: 1;
+}
+
+.status-title {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.new-task-input {
+  width: 100%;
+  padding: 0.5rem;
+  color: black;
+}
+
+.add-task-button {
+  background-color: #22c55e;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  border-radius: 0.25rem;
+}

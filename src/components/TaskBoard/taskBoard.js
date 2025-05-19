@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addTask } from "../features/tasks/tasksSlice";
-import TaskCard from "./TaskCard";
+import { addTask } from "./../../slices/taskSlice";
+import TaskCard from "./../TaskCard/taskCard";
 
 const TaskBoard = () => {
   const tasks = useSelector((state) => state.boards[state.activeBoard] || []);
