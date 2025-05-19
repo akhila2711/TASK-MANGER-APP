@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addTask } from "./../../slices/taskSlice";
 import TaskCard from "./../TaskCard/taskCard";
+import "./taskBoard.css";
 
 const TaskBoard = () => {
   const tasks = useSelector((state) => state.boards[state.activeBoard] || []);
@@ -10,14 +11,14 @@ const TaskBoard = () => {
   const dispatch = useDispatch();
 
   return (
-    <div className="flex-1 p-4 bg-gray-900 text-white">
-      <h2 className="text-2xl font-bold mb-4">
+    <div className="task-board">
+      <h2>
         {useSelector((state) => state.activeBoard)} Board
       </h2>
-      <div className="flex space-x-4">
+      <div style={{ display: "flex", gap: "1rem" }}>
         {statuses.map((status) => (
-          <div key={status} className="flex-1">
-            <h3 className="text-lg mb-2">{status}</h3>
+          <div key={status} className="status-column">
+            <h3 className="status-title">{status}</h3>
             {tasks.map((task, i) =>
               task.status === status ? (
                 <TaskCard key={i} task={task} index={i} />
@@ -26,15 +27,15 @@ const TaskBoard = () => {
           </div>
         ))}
       </div>
-      <div className="mt-4">
+      <div style={{ marginTop: "1rem" }}>
         <input
-          className="w-full p-2 text-black"
+          className="new-task-input"
           placeholder="New task title"
           value={taskTitle}
           onChange={(e) => setTaskTitle(e.target.value)}
         />
         <button
-          className="bg-green-500 mt-2 p-2 rounded"
+          className="add-task-button"
           onClick={() => {
             if (taskTitle.trim()) {
               dispatch(addTask(taskTitle));
