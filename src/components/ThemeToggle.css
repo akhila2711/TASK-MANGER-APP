@@ -1,0 +1,47 @@
+.app-container.light-theme {
+  background: #f5f6fa;
+  color: #222;
+}
+
+.app-container.dark-theme {
+  background: #181a20;
+  color: #fff;
+}
+
+/* Example: Board background */
+.app-container.light-theme .board {
+  background: #fff;
+  color: #222;
+}
+
+.app-container.dark-theme .board {
+  background: #181a20;
+  color: #fff;
+}
+
+/* Example: Sidebar background */
+.app-container.light-theme .sidebar {
+  background: #f0f0f0;
+  color: #222;
+}
+
+.app-container.dark-theme .sidebar {
+  background: #1a1d23;
+  color: #fff;
+}
+
+/* Theme toggle button style */
+.theme-toggle {
+  margin: 12px 0;
+  padding: 8px 18px;
+  border-radius: 6px;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  background: #4f8cff;
+  color: #fff;
+  transition: background 0.2s;
+}
+.theme-toggle:hover {
+  background: #3358ff;
+}

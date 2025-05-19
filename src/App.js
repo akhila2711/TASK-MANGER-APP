@@ -1,17 +1,22 @@
-import React from "react";
-import Sidebar from "./components/Slidebar/sidebar";
-import TaskBoard from "./components/TaskBoard/taskBoard";
-import { Provider } from "react-redux";
-import { store } from "./store";
-import "./App.css"; // Import your CSS file here
+import React from 'react';
+import { useSelector } from 'react-redux';
+import Sidebar from './components/Sidebar';
+import Board from './components/Board';
+import ThemeToggle from './components/ThemeToggle';
+import './App.css';
 
-const App = () => (
-  <Provider store={store}>
-    <div className="app-container">
+function App() {
+  const theme = useSelector(state => state.tasks.theme);
+
+  return (
+    <div className={`app-container ${theme}-theme`}>
       <Sidebar />
-      <TaskBoard />
+      <main className="main-content">
+        <ThemeToggle />
+        <Board />
+      </main>
     </div>
-  </Provider>
-);
+  );
+}
 
 export default App;
