@@ -9,9 +9,16 @@
   box-shadow: 0 2px 16px rgba(0,0,0,0.25);
 }
 
-.board > h2 {
-  color: #fff;
+.light-theme .board h2 {
+  color: #080808;
   font-size: 2rem;
+  margin-bottom: 12px;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+.dark-theme .board h2 {
+  color: #fff;
+    font-size: 2rem;
   margin-bottom: 12px;
   letter-spacing: 1px;
   font-weight: 700;

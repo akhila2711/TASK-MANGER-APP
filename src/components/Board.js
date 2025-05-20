@@ -27,7 +27,7 @@ const Board = () => {
   return (
 
   <div className="board">
-    <h2 style={{color: "#fff"}}>{boards[selectedBoardIndex].name}</h2>
+    <h2>{boards[selectedBoardIndex].name}</h2>
     <div className="board-columns">
       {Object.entries(columns).map(([key, tasks]) => (
         <Column key={key} name={key} tasks={tasks} />
