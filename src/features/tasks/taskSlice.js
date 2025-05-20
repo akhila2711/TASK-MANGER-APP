@@ -83,6 +83,12 @@ const taskSlice = createSlice({
     setBoardIndex: (state, action) => {
       state.selectedBoardIndex = action.payload;
     },
+    editBoardName: (state, action) => {
+  const { index, name } = action.payload;
+  if (state.boards[index]) {
+    state.boards[index].name = name;
+  }
+},
   },
 });
 
@@ -93,7 +99,8 @@ export const {
   toggleTheme,
   addBoard,
   deleteBoard,
-  setBoardIndex
+  setBoardIndex,
+  editBoardName
 } = taskSlice.actions;
 
 export default taskSlice.reducer;
