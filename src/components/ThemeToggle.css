@@ -33,7 +33,9 @@
 }
 
 /* Theme toggle button style */
-.theme-toggle {
+
+
+.theme-toggle.app-container.light-theme {
   margin: 12px 0;
   padding: 8px 18px;
   border-radius: 6px;
@@ -42,6 +44,19 @@
   cursor: pointer;
   background: #4f8cff;
   color: #fff;
+  transition: background 0.2s;
+}
+
+
+.theme-toggle.app-container.dark-theme {
+  margin: 12px 0;
+  padding: 8px 18px;
+  border-radius: 6px;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  background: #4f8cff;
+  color: #0a0a0a;
   transition: background 0.2s;
 }
 .theme-toggle:hover {
