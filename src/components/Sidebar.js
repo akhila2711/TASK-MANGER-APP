@@ -13,35 +13,34 @@ const Sidebar = () => {
   const selectedBoardIndex = useSelector(state => state.tasks.selectedBoardIndex);
   const dispatch = useDispatch();
 
-  // Local state for editing board name
   const [editingIndex, setEditingIndex] = useState(null);
   const [editValue, setEditValue] = useState('');
 
-  // Start editing a board
-  const startEditing = (index, currentName) => {
+  const startEdit = (index, name) => {
     setEditingIndex(index);
-    setEditValue(currentName);
+    setEditValue(name);
   };
 
-  // Save edited board name
-  const saveEditing = (index) => {
-    if (editValue.trim() !== '') {
-      dispatch(editBoardName({ index, name: editValue }));
-    }
+  const saveEdit = (index) => {
+    if (!editValue.trim()) return;
+    dispatch(editBoardName({ index, name: editValue }));
     setEditingIndex(null);
     setEditValue('');
   };
 
-  // Cancel editing
-  const cancelEditing = () => {
+  const cancelEdit = () => {
     setEditingIndex(null);
     setEditValue('');
+  };
+
+  const handleClick = (e, action) => {
+    e.stopPropagation();
+    action();
   };
 
   return (
     <div className="sidebar">
       <h3>Boards</h3>
-
       <ul>
         {boards.map((board, index) => (
           <li
@@ -50,41 +49,33 @@ const Sidebar = () => {
             onClick={() => dispatch(setBoardIndex(index))}
           >
             {editingIndex === index ? (
-              <div>
+              <>
                 <input
                   value={editValue}
                   onChange={e => setEditValue(e.target.value)}
                   onClick={e => e.stopPropagation()}
                   autoFocus
                 />
-                <button onClick={e => { e.stopPropagation(); saveEditing(index); }}>Save</button>
-                <button onClick={e => { e.stopPropagation(); cancelEditing(); }}>Cancel</button>
-              </div>
+                <button onClick={e => handleClick(e, () => saveEdit(index))}>💾</button>
+                <button onClick={e => handleClick(e, cancelEdit)}>✖️</button>
+              </>
             ) : (
-              <div>
+              <>
                 {board.icon} {board.name}
-                <button onClick={e => { e.stopPropagation(); startEditing(index, board.name); }}>
-                  ✏️
-                </button>
+                <button onClick={e => handleClick(e, () => startEdit(index, board.name))}>✏️</button>
                 {index !== 0 && (
-                  <button onClick={e => { e.stopPropagation(); dispatch(deleteBoard(index)); }}>
-                    ❌
-                  </button>
+                  <button onClick={e => handleClick(e, () => dispatch(deleteBoard(index)))}>❌</button>
                 )}
-              </div>
+              </>
             )}
           </li>
         ))}
       </ul>
-
-      <button onClick={() => dispatch(addBoard())}>
-        ➕ Add New Board
-      </button>
+      <button onClick={() => dispatch(addBoard())}>➕ Add New Board</button>
     </div>
   );
 };
 
 export default Sidebar;
-
 
 
