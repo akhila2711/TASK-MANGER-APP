@@ -78,11 +78,11 @@
   margin-bottom: 8px;
   transition: border 0.2s, box-shadow 0.2s;
   resize: vertical;
-  box-shadow: 0 1px 4px rgba(79,140,255,0.08);
+  box-shadow: 0 1px 4px rgba(79,140,255,0.15);
 }
 
 .board textarea:focus {
-  border: 1.5px solid #ffb300;
+  border: 1.5px solid #4f8cff;
   outline: none;
   box-shadow: 0 2px 8px rgba(255,179,0,0.12);
 }
