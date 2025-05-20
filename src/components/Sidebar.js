@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setBoardIndex, addBoard, deleteBoard, editBoardName } from '../features/tasks/taskSlice';
+import {
+  setBoardIndex,
+  addBoard,
+  deleteBoard,
+  editBoardName
+} from '../features/tasks/taskSlice';
 import './Sidebar.css';
 
 const Sidebar = () => {
@@ -11,22 +16,26 @@ const Sidebar = () => {
   const [editingIndex, setEditingIndex] = useState(null);
   const [editValue, setEditValue] = useState('');
 
-  const startEdit = (index, currentName) => {
+  const startEdit = (index, name) => {
     setEditingIndex(index);
-    setEditValue(currentName);
+    setEditValue(name);
   };
 
   const saveEdit = (index) => {
-    if (editValue.trim()) {
-      dispatch(editBoardName({ index, name: editValue }));
-      setEditingIndex(null);
-      setEditValue('');
-    }
+    if (!editValue.trim()) return;
+    dispatch(editBoardName({ index, name: editValue }));
+    setEditingIndex(null);
+    setEditValue('');
   };
 
   const cancelEdit = () => {
     setEditingIndex(null);
     setEditValue('');
+  };
+
+  const handleClick = (e, action) => {
+    e.stopPropagation();
+    action();
   };
 
   return (
@@ -47,24 +56,15 @@ const Sidebar = () => {
                   onClick={e => e.stopPropagation()}
                   autoFocus
                 />
-                <button onClick={e => { e.stopPropagation(); saveEdit(index); }}>💾</button>
-                <button onClick={e => { e.stopPropagation(); cancelEdit(); }}>✖️</button>
+                <button onClick={e => handleClick(e, () => saveEdit(index))}>💾</button>
+                <button onClick={e => handleClick(e, cancelEdit)}>✖️</button>
               </>
             ) : (
               <>
                 {board.icon} {board.name}
-                <button
-                  onClick={e => {
-                    e.stopPropagation();
-                    startEdit(index, board.name);
-                  }}
-                  style={{ marginLeft: 8 }}
-                >✏️</button>
+                <button onClick={e => handleClick(e, () => startEdit(index, board.name))}>✏️</button>
                 {index !== 0 && (
-                  <button onClick={e => {
-                    e.stopPropagation();
-                    dispatch(deleteBoard(index));
-                  }}>❌</button>
+                  <button onClick={e => handleClick(e, () => dispatch(deleteBoard(index)))}>❌</button>
                 )}
               </>
             )}
@@ -77,3 +77,5 @@ const Sidebar = () => {
 };
 
 export default Sidebar;
+
+
