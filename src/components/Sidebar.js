@@ -71,7 +71,7 @@ const Sidebar = () => {
           </li>
         ))}
       </ul>
-      <button onClick={() => dispatch(addBoard())}>➕ Add Board</button>
+      <button onClick={() => dispatch(addBoard())}>➕ Add New Board</button>
     </div>
   );
 };
