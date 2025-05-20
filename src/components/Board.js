@@ -8,7 +8,11 @@ const Board = () => {
   const { boards, selectedBoardIndex } = useSelector(state => state.tasks);
   const columns = boards[selectedBoardIndex].columns;
   const dispatch = useDispatch();
+
+  // Add state for all fields
   const [taskName, setTaskName] = useState('');
+  const [taskDescription, setTaskDescription] = useState('');
+  const [taskTags, setTaskTags] = useState('');
 
   const handleAddTask = () => {
     if (taskName.trim()) {
@@ -16,34 +20,46 @@ const Board = () => {
         column: 'backlog',
         task: {
           name: taskName,
-          description: '',
-          tags: []
+          description: taskDescription,
+          tags: taskTags.split(',').map(tag => tag.trim()).filter(Boolean)
         }
       }));
       setTaskName('');
+      setTaskDescription('');
+      setTaskTags('');
     }
   };
 
   return (
-
-  <div className="board">
-    <h2>{boards[selectedBoardIndex].name}</h2>
-    <div className="board-columns">
-      {Object.entries(columns).map(([key, tasks]) => (
-        <Column key={key} name={key} tasks={tasks} />
-      ))}
+    <div className="board">
+      <h2>{boards[selectedBoardIndex].name}</h2>
+      <div className="board-columns">
+        {Object.entries(columns).map(([key, tasks]) => (
+          <Column key={key} name={key} tasks={tasks} />
+        ))}
+      </div>
+      <div style={{ marginTop: 16, display: 'flex', flexDirection: 'column', gap: 8 }}>
+        <input
+          type="text"
+          value={taskName}
+          onChange={e => setTaskName(e.target.value)}
+          placeholder="Task name"
+        />
+        <textarea
+          value={taskDescription}
+          onChange={e => setTaskDescription(e.target.value)}
+          placeholder="Task description"
+          rows={2}
+        />
+        <input
+          type="text"
+          value={taskTags}
+          onChange={e => setTaskTags(e.target.value)}
+          placeholder="Tags (comma separated)"
+        />
+        <button onClick={handleAddTask}>Add Task</button>
+      </div>
     </div>
-    <div style={{ marginTop: 16 }}>
-      <input
-        type="text"
-        value={taskName}
-        onChange={e => setTaskName(e.target.value)}
-        placeholder="Add new task to Backlog"
-      />
-      <button onClick={handleAddTask}>Add Task</button>
-    </div>
-  </div>
-
   );
 };
 
