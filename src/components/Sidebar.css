@@ -23,7 +23,14 @@
   color: #fff;
   font-weight: bold;
 }
-.sidebar button {
+.light-theme .sidebar button {
+  background: none;
+  border: none;
+  color: #0a0a0a;
+  cursor: pointer;
+  margin-left: 8px;
+}
+.dark-theme .sidebar button {
   background: none;
   border: none;
   color: #ccc;

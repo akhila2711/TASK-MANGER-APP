@@ -9,9 +9,9 @@ const statusLabels = {
 };
 
 const TaskCard = ({ task, column, onMove }) => {
-  
   const currentIndex = statusOrder.indexOf(column);
   const nextStatus = statusOrder[currentIndex + 1];
+  const prevStatus = statusOrder[currentIndex - 1];
 
   return (
     <div className="task-card">
@@ -22,14 +22,33 @@ const TaskCard = ({ task, column, onMove }) => {
           <span key={i}>{tag}</span>
         ))}
       </div>
-      {nextStatus && (
-        <button
-          className="move-btn"
-          onClick={() => onMove(task.id, column, nextStatus)}
-        >
-          {statusLabels[column]}
-        </button>
-      )}
+      <div className="move-btns">
+        {column === 'inReview' ? (
+          <>
+            <button
+              className="move-btn"
+              onClick={() => onMove(task.id, column, prevStatus)}
+            >
+              In Progress
+            </button>
+            <button
+              className="move-btn"
+              onClick={() => onMove(task.id, column, nextStatus)}
+            >
+              Completed
+            </button>
+          </>
+        ) : (
+          nextStatus && column !== 'completed' && (
+            <button
+              className="move-btn"
+              onClick={() => onMove(task.id, column, nextStatus)}
+            >
+              {statusLabels[column]}
+            </button>
+          )
+        )}
+      </div>
     </div>
   );
 };
