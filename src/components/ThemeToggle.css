@@ -60,5 +60,6 @@
   transition: background 0.2s;
 }
 .theme-toggle:hover {
-  background: #3358ff;
+  background: #2d55a0;
+  color: #fff;
 }
