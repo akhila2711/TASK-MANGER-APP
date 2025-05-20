@@ -12,7 +12,7 @@ const initialState = {
             id: nanoid(),
             name: 'Task Manager Project',
             description: 'The Task Manager Project should be done',
-            tags: ['sample'],
+            tags: ['Task', 'Project'],
           },
         ],
         inProgress: [],
@@ -60,14 +60,7 @@ const taskSlice = createSlice({
         name: 'New Board',
         icon: ['📋', '🚀', '🎨', '📘'][Math.floor(Math.random() * 4)],
         columns: {
-          backlog: [
-            {
-              id: nanoid(),
-              name: 'Sample Task',
-              description: 'This is a sample task in the backlog.',
-              tags: ['sample'],
-            },
-          ],
+          backlog: [],
           inProgress: [],
           inReview: [],
           completed: [],
