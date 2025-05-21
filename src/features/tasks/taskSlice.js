@@ -58,7 +58,7 @@ const taskSlice = createSlice({
       state.boards.push({
         id: nanoid(),
         name: 'New Board',
-        icon: ['📋', '🚀', '🎨', '📘'][Math.floor(Math.random() * 4)],
+        icon: '🗂️',
         columns: {
           backlog: [],
           inProgress: [],

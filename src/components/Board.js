@@ -9,7 +9,6 @@ const Board = () => {
   const columns = boards[selectedBoardIndex].columns;
   const dispatch = useDispatch();
 
-  // Add state for all fields
   const [taskName, setTaskName] = useState('');
   const [taskDescription, setTaskDescription] = useState('');
   const [taskTags, setTaskTags] = useState('');
@@ -48,14 +47,14 @@ const Board = () => {
         <textarea
           value={taskDescription}
           onChange={e => setTaskDescription(e.target.value)}
-          placeholder="Task description"
+          placeholder="Description"
           rows={2}
         />
         <input
           type="text"
           value={taskTags}
           onChange={e => setTaskTags(e.target.value)}
-          placeholder="Tags (comma separated)"
+          placeholder="Tags"
         />
         <button onClick={handleAddTask}>Add Task</button>
       </div>
